@@ -100,15 +100,6 @@ try:
     font.generate(fontfile + '.ttf')
     font.generate(fontfile + '.svg')
     manifest['fonts'].append(fontfile + '.ttf')
-    manifest['fonts'].append(fontfile + '.svg')
-
-    # Fix SVG header for webkit
-    # from: https://github.com/fontello/font-builder/blob/master/bin/fontconvert.py
-    svgfile = open(fontfile + '.svg', 'r+')
-    svgtext = svgfile.read()
-    svgfile.seek(0)
-    svgfile.write(svgtext.replace('''<svg>''', '''<svg xmlns="http://www.w3.org/2000/svg">'''))
-    svgfile.close()
 
     # Convert WOFF
     scriptPath = os.path.dirname(os.path.realpath(__file__))

@@ -159,29 +159,17 @@ module Fontcustom
   font-style: normal;
 }|
         else
-        string = %Q|@font-face {
+          %Q|@font-face {
   font-family: "#{font_name}";
   src: #{url}("#{path}.eot");
   src: #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
        #{url}("#{path}.woff2") format("woff2"),
        #{url}("#{path}.woff") format("woff"),
-       #{url}("#{path}.ttf") format("truetype"),
-       #{url}("#{path}.svg##{font_name}") format("svg");
+       #{url}("#{path}.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }|
         end
-
-        # For Windows/Chrome <http://stackoverflow.com/a/19247378/1202445>
-        string << %Q|
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: "#{font_name}";
-    src: #{url}("#{path}.svg##{font_name}") format("svg");
-  }
-}|
-        string
       end
 
       def woff_base64
